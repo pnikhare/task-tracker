@@ -1,0 +1,81 @@
+.navbar-custom {
+    background-color: blueviolet;
+    color:black;
+    font-size : 17px;
+}
+.nav-link {
+    color:black
+}
+.navbar-brand {
+    font-style: italic;
+    font-family:serif;
+    font-weight:bold;
+    font-size: 30px;
+    color:black
+}
+.brand-logo {
+    width:50px;
+}
+
+/* .top-nav-bar {
+    padding-left: 40%;
+} */
+#general-nav {
+    margin-top:2px;
+    border-top-color: green;
+}
+
+label {
+    font-weight : bold
+}
+
+
+.nav-link:hover {
+    font-weight : bold;
+    margin-left: 2px;
+    border-right-color: green;
+    border-right:2px;
+    color:black;
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color:blueviolet;
+    color : black;
+    text-align: center;
+    height: 40px;
+}
+.footer img {
+    height: 15px;
+    width: 15px;
+}
+
+.content {
+    margin-left : 30px;
+    margin-top : 20px;
+}
+#host-img {
+    height : 150px;
+    width :100px;
+}
+#event p {
+    font-weight :bold;
+}
+
+#username {
+    color : navy;
+    padding-left : 650px;
+    padding-right :2px;
+    font-weight : bold;
+}
+.footer a {
+    color:black;
+}
+.footer-img{
+    float:right;
+    padding-right:20px;
+    padding-left:480px;
+}

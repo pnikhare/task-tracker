@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="all,follow">
+        <link href="/css/bootstrap/bootstrap.css" rel="stylesheet">
+        <link href="/css/font-awesome.min.css" rel="stylesheet">
+        <link href="/css/main.css" rel="stylesheet">
+
+        <title>Task Tracker</title>
+
+    </head>
+
+    <body>
+        <div class="container-fluid">
+            <br>
+            <h4> Task Tracker </h4>
+            <div class="row">
+                <div class="col-md-6">
+                    <br>
+                    <h5>  Requests </h5>
+                    <div class="col-md-12">
+                        <a class="btn btn-primary" data-toggle="collapse" href="#getTasks" aria-expanded="false" aria-controls="getTasks">
+                            Get all Tasks
+                        </a> 
+                        <br/>
+                        <div class="collapse" id="getTasks">
+                            <div class="card card-body">
+                                <button onclick="getTasks()"> Execute </button>
+                            </div>
+                        </div>
+                        <br/>
+                        <a class="btn btn-primary" data-toggle="collapse" href="#createTasks" aria-expanded="false" aria-controls="createTasks">
+                            Create Tasks
+                        </a>
+                    </div>
+                    <br/>
+
+                    <div class="collapse" id="createTasks">
+                        <div class="card card-body">
+                            <form id="taskForm">
+                                <input type="text" placeholder="id" name="_id" id="_id">
+                                <input type="text" placeholder="name" name="name" id="name">
+                                <input type="text" placeholder="status" name="status" id="status">
+                                <input type="text" placeholder="project" name="project" id="project">
+                                <input type="text" placeholder="deadline" name="deadline" id="deadline"> <br/>
+                                <button onclick="createTasks();return false;"> Execute </button>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-6">
+                    <h5> Responses </h5>
+                    <div class="card card-body" id="responseDiv"></div>
+                </div>
+            </div>
+
+        </div>
+        <script src="/css/jquery.min.js"></script>
+        <script src="/css/popper.min.js"></script>
+        <script src="/css/bootstrap.min.js"></script>
+        <script>
+
+                                   function getTasks() {
+                                       console.log("execue get tasks");
+                                       $.ajax({
+                                           url: "/api/v1/tasks",
+                                           type: "GET",
+                                           success: function (data) {
+                                               //data = eval(data);
+                                               alert(JSON.stringify(data));
+                                               $('#responseDiv').text(JSON.stringify(data));
+                                           },
+                                           error: function (xhr, status, errorThrown) {
+                                               console.log("Error: " + errorThrown);
+                                               $('#responseDiv').html(errorThrown);
+                                           }
+                                       });
+                                   }
+
+                                   function createTasks() {
+                                       console.log("execue create tasks");
+                                       var form = $('#taskForm');
+                                       //console.log($(form).serialize());
+                                       $.ajax({
+                                           url: "/api/v1/tasks",
+                                           type: "POST",
+                                           data: $(form).serialize(),
+                                           success: function (results) {
+                                               //data = eval(data);
+                                               alert(JSON.stringify(results));
+                                               $('#responseDiv').text(JSON.stringify(results));
+                                           },
+                                           error: function (xhr, status, errorThrown) {
+                                               console.log("Error: " + errorThrown);
+                                               $('#responseDiv').text(errorThrown);
+                                           }
+                                       });
+                                   }
+        </script>
+
+    </body>
+</html>
+
