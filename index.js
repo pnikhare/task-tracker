@@ -11,6 +11,12 @@ app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({extended:true}));
 app.use('/api/v1',require('./routes/task'));
 app.use('/css', express.static(__dirname + '/css'));
+app.use('/views', express.static(__dirname + '/views'));
+
+ var swaggerUi = require('swagger-ui-express'),
+ swaggerDocument = require('./swagger.json');
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 
 

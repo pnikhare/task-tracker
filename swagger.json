@@ -1,0 +1,257 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "Node.js Application API to track tasks"
+    },
+    "host": "localhost:8040",
+    "basePath": "/api/v1",
+    "tags": [
+        {
+            "name": "Tasks",
+            "description": "API for Tasks in the system"
+        }
+    ],
+    "schemes": [
+        "http"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/tasks": {
+            "post": {
+                "tags": [
+                    "Tasks"
+                ],
+                "description": "Create new task in system",
+                "parameters": [
+                    {
+                        "name": "task",
+                        "in": "body",
+                        "description": "Tasks that we want to create",
+                        "schema": {
+                            "$ref": "#/definitions/Tasks"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "New task is created",
+                        "schema": {
+                            "$ref": "#/definitions/Tasks"
+                        }
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "Tasks"
+                ],
+                "summary": "Get all tasks in system",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Tasks"
+                        }
+                    }
+                }
+            }
+        },
+        "/tasks/{taskId}": {
+            "get": {
+                "summary": "Get task with given ID",
+                "tags": [
+                    "Tasks"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Task is found",
+                        "schema": {
+                            "$ref": "#/definitions/Tasks"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Delete task with given ID",
+                "tags": [
+                    "Tasks"
+                ],
+                 "responses": {
+                    "200": {
+                        "description": "Task is deleted"
+                    }
+                }
+            },
+            "put": {
+                "summary": "Update task with given ID",
+                "tags": [
+                    "Tasks"
+                ],
+                 "parameters": [
+                    {
+                        "name": "tasks",
+                        "in": "body",
+                        "description": "Tasks with new values of properties",
+                        "schema": {
+                            "$ref": "#/definitions/Tasks"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Task is updated",
+                        "schema": {
+                            "$ref": "#/definitions/Tasks"
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "summary": "Update part of task detail with given ID",
+                "tags": [
+                    "Tasks"
+                ],
+                "parameters": [
+                    {
+                        "name": "tasks",
+                        "in": "body",
+                        "description": "Tasks with new values of properties",
+                        "schema": {
+                            "$ref": "#/definitions/Tasks"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Task is updated",
+                        "schema": {
+                            "$ref": "#/definitions/Tasks"
+                        }
+                    }
+                }
+            },
+             "parameters": [
+                    {
+                        "name": "taskId",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID of task that we want to find",
+                        "type": "number"
+                    }
+                ]
+        },
+        "/tasks/{taskId}/status": {
+            "get": {
+                "summary": "Get status of a task with given ID",
+                "tags": [
+                    "Tasks"
+                ], "parameters": [
+                    {
+                        "name": "taskId",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID of task that we want to find",
+                        "type": "number"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get Status of a task with given Id",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+         "/tasks/status/{status}": {
+            "get": {
+                "summary": "Get all task with given status",
+                "tags": [
+                    "Tasks"
+                ], "parameters": [
+                    {
+                        "name": "status",
+                        "in": "path",
+                        "required": true,
+                        "description": "Status of task to find ",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get all task with the given Status",
+                        "schema": {
+                             "$ref": "#/definitions/Tasks"
+                        }
+                    }
+                }
+            }
+        },
+        "/tasks/deadline/{deadline}": {
+            "get": {
+                "summary": "Get all task before the given deadline",
+                "tags": [
+                    "Tasks"
+                ], "parameters": [
+                    {
+                        "name": "deadline",
+                        "in": "path",
+                        "required": true,
+                        "description": "Deadline of task to get list",
+                        "type": "string",
+                        "format":"date"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get all task before the given deadline",
+                        "schema": {
+                             "$ref": "#/definitions/Tasks"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "Tasks": {
+            "required": [
+                "_id",
+                "name",
+                "status"
+            ],
+            "properties": {
+                "_id": {
+                    "type": "number",
+                    "uniqueItems": true
+                },
+                "name": {
+                    "type": "string",
+                    "uniqueItems": true
+                },
+                "status": {
+                    "type": "string"
+                },
+                "project": {
+                    "type": "string"
+                },
+                "deadline": {
+                    "type": "string",
+                    "format":"date",
+                    "pattern":"YYYY-MM-DD"
+                }
+            }
+        }
+    }
+}
+  

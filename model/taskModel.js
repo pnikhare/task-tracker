@@ -15,8 +15,7 @@ var taskSchema = new mongoose.Schema({
         required: true
     },
     project: {
-        type: String,
-        required: true
+        type: String
     },
     deadline :{
         type: Date

@@ -9,100 +9,250 @@
         <meta name="robots" content="all,follow">
         <link href="/css/bootstrap/bootstrap.css" rel="stylesheet">
         <link href="/css/font-awesome.min.css" rel="stylesheet">
-        <link href="/css/main.css" rel="stylesheet">
+        <!--              <link href="/css/main.css" rel="stylesheet">-->
+        <script type="text/javascript" src="/css/jquery.min.js"></script>
+        <script type="text/javascript" src="/css/popper.min.js"></script>
+        <script type="text/javascript" src="/css/bootstrap.js"></script>
 
         <title>Task Tracker</title>
+        <style>
+            .navbar-custom {
+                background-color: blueviolet;
+                color:black;
+                font-size : 17px;
+            }
 
+            .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+                color: #555555;
+                cursor: default;
+                background-color: #fff;
+                border: 1px solid #ddd;
+                border-bottom-color: transparent;
+            }
+            .nav-tabs > li > a {
+                margin-right: 2px;
+                line-height: 1.42857143;
+                border: 1px solid transparent;
+                border-radius: 4px 4px 0 0;
+            }
+            .nav > li > a {
+                position: relative;
+                display: block;
+                padding: 10px 15px;
+            }
+
+            a {
+                color: #337ab7;
+                text-decoration: none;
+            }
+            a {
+                background-color: transparent;
+            }
+
+
+            a:-webkit-any-link {
+                color: -webkit-link;
+                cursor: pointer;
+                text-decoration: underline;
+            }
+
+            li {
+                text-align: -webkit-match-parent;
+            }
+            .nav {
+                padding-left: 0;
+                margin-bottom: 0;
+                list-style: none;
+            }
+
+
+
+            /*            a {
+                            color:black;
+                        }
+                       
+            
+                        header {
+                            text-align: center;
+                            display:inline-block;
+                        }*/
+        </style>
     </head>
 
     <body>
         <div class="container-fluid">
             <br>
-            <h4> Task Tracker </h4>
-            <div class="row">
-                <div class="col-md-6">
-                    <br>
-                    <h5>  Requests </h5>
-                    <div class="col-md-12">
-                        <a class="btn btn-primary" data-toggle="collapse" href="#getTasks" aria-expanded="false" aria-controls="getTasks">
-                            Get all Tasks
-                        </a> 
-                        <br/>
-                        <div class="collapse" id="getTasks">
-                            <div class="card card-body">
-                                <button onclick="getTasks()"> Execute </button>
-                            </div>
-                        </div>
-                        <br/>
-                        <a class="btn btn-primary" data-toggle="collapse" href="#createTasks" aria-expanded="false" aria-controls="createTasks">
-                            Create Tasks
-                        </a>
+            <nav class="navbar navbar-expand-sm navbar-custom col-md-12">
+                <h4> Task Tracker </h4>
+            </nav>
+
+
+            <br/>
+
+            <ul class="nav nav-tabs">
+                <li ><a data-toggle="tab" class="btn btn-outline-primary" href="#getTasks">View</a></li>
+                <li><a data-toggle="tab" class="btn btn-outline-primary" href="#createTasks">Create</a></li>
+                <li><a data-toggle="tab" class="btn btn-outline-primary" href="#updateTasks">Update</a></li>
+                <li><a data-toggle="tab" class="btn btn-outline-primary" href="#updatePartTasks">Update Part</a></li>
+                <li><a data-toggle="tab" class="btn btn-outline-primary" href="#deleteTask">Delete</a></li>
+                <li><a data-toggle="tab" class="btn btn-outline-primary" href="#searchTask">Search</a></li>
+            </ul>
+
+            <div class="tab-content">
+                <div id="getTasks" class="tab-pane fade show active">
+                    <br/>
+                    <h5>  Get all Tasks </h5>
+
+                    <div class="card card-body">
+                        <button class="col-md-3" onclick="getTasks()"> Execute </button>
                     </div>
                     <br/>
 
-                    <div class="collapse" id="createTasks">
-                        <div class="card card-body">
-                            <form id="taskForm">
-                                <input type="text" placeholder="id" name="_id" id="_id">
-                                <input type="text" placeholder="name" name="name" id="name">
-                                <input type="text" placeholder="status" name="status" id="status">
-                                <input type="text" placeholder="project" name="project" id="project">
-                                <input type="text" placeholder="deadline" name="deadline" id="deadline"> <br/>
-                                <button onclick="createTasks();return false;"> Execute </button>
-                            </form>
-                        </div>
+                </div>
+                <div id="createTasks" class="tab-pane fade">
+                    <br/>
+                    <h5>  Create New Tasks </h5>
+
+                    <div class="card card-body">
+                        <form id="taskForm">
+                            <label class="col-md-2"> ID : </label>
+                            <input type="text" placeholder="id" name="_id" id="_id">
+                            <label class="col-md-2"> Task Name : </label>
+                            <input type="text" placeholder="name" name="name" id="name"> <br/>
+                            <label class="col-md-2"> Task Status : </label>
+                            <input type="text" placeholder="status" name="status" id="status">
+                            <label class="col-md-2"> Project : </label>
+                            <input type="text" placeholder="project" name="project" id="project"> <br/>
+                            <label class="col-md-2"> Deadline : </label>
+                            <input type="text" placeholder="deadline" name="deadline" id="deadline"> <br/>
+                            <button class="col-md-3" type="submit" onclick="createTasks();return false;"> Execute </button>
+                        </form>
                     </div>
+                </div> <br/>
+
+                <div id="updateTasks" class="tab-pane fade">
+                    <br/>
+                    <h5> Update Task By ID  </h5>
+
+                    <div class="card card-body">
+                        <form id="updateForm">
+                            <label class="col-md-2"> ID : </label>
+                            <input type="text" placeholder="id" name="_id" id="_id"> 
+                            <label class="col-md-2"> Task Name : </label>
+                            <input type="text" placeholder="name" name="name" id="name"> <br/>
+                            <label class="col-md-2"> Task Status : </label>
+                            <input type="text" placeholder="status" name="status" id="status">
+                            <label class="col-md-2"> Project : </label>
+                            <input type="text" placeholder="project" name="project" id="project"> <br/>
+                            <label class="col-md-2"> Deadline : </label>
+                            <input type="text" placeholder="deadline" name="deadline" id="deadline"> <br/>
+                            <button class="col-md-3" type="submit" onclick="updateTaskByID();return false;"> Execute </button>
+
+                        </form>
+                    </div><br/>
+                </div>
+                <div id="updatePartTasks" class="tab-pane fade">
+                    <br/>
+                    <h5>  Update Part of Details of Task By ID </h5>
+
+                    <div class="card card-body">
+                        <form id="updatePartForm">
+                            <label class="col-md-2"> ID : </label>
+                            <input type="text" placeholder="id" name="_id" id="_id"> 
+                            <label class="col-md-2"> Task Name : </label>
+                            <input type="text" placeholder="name" name="name" id="name"> <br/>
+                            <label class="col-md-2"> Task Status : </label>
+                            <input type="text" placeholder="status" name="status" id="status">
+                            <label class="col-md-2"> Project : </label>
+                            <input type="text" placeholder="project" name="project" id="project"> <br/>
+                            <label class="col-md-2"> Deadline : </label>
+                            <input type="text" placeholder="deadline" name="deadline" id="deadline"> <br/>
+                            <button class="col-md-3" type="submit" onclick="updatePartTaskByID();return false;"> Execute </button>
+
+                        </form>
+                    </div>
+                    <br/>
 
                 </div>
-                <div class="col-md-6">
-                    <h5> Responses </h5>
+
+                <div id="deleteTask" class="tab-pane fade">
+                    <br/>
+                    <h5>   Delete Task By ID </h5>
+
+                    <div class="card card-body">
+                        <form id="deleteForm">
+                            <label class="col-md-2"> ID : </label>
+                            <input type="text" placeholder="id" name="_id" id="_id"> <br/>
+                            <button  class="col-md-3" type="submit" onclick="deleteByID();return false;"> Execute </button>
+                        </form>
+                    </div>
+                    <br/>
+                </div>
+
+                <div id="searchTask" class="tab-pane fade">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <h5>  Search Task By ID </h5>
+                            <div class="card card-body">
+                                <form id="searchId">
+                                    <label class="col-md-4"> ID : </label>
+                                    <input type="text" placeholder="id" name="_id" > <br/><br/>
+                                    <button  class="col-md-6" type="submit" onclick="searchByID();return false;"> Execute </button>
+                                </form>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-3">
+                            <h5>  Search Task By Status </h5>
+                            <div class="card card-body">
+                                <form id="searchStatus">
+                                    <label class="col-md-6"> status : </label>
+                                    <input type="text" placeholder="status" name="status" > <br/><br/>
+                                    <button  class="col-md-6" type="submit" onclick="searchByStatus();return false;"> Execute </button>
+                                </form>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-3">
+                            <h5>  Search Task By Before Deadline </h5>
+                            <div class="card card-body">
+                                <form id="searchDate">
+                                    <label class="col-md-6"> Deadline : </label>
+                                    <input type="text" placeholder="YYYY-MM-DD" name="deadline" > <br/><br/>
+                                    <button  class="col-md-6" type="submit" onclick="searchByDate();return false;"> Execute </button>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <h5>  Check Status By ID </h5>
+                            <div class="card card-body">
+                                <form id="searchStatusId">
+                                    <label class="col-md-4"> ID : </label>
+                                    <input type="text" placeholder="id" name="_id" > <br/><br/>
+                                    <button  class="col-md-6" type="submit" onclick="searchStatusByID();return false;"> Execute </button>
+                                </form>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <br/>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                   
                     <div class="card card-body" id="responseDiv"></div>
+                    <table id="table" align = "center" border="1px"></table>
                 </div>
             </div>
 
         </div>
-        <script src="/css/jquery.min.js"></script>
-        <script src="/css/popper.min.js"></script>
-        <script src="/css/bootstrap.min.js"></script>
-        <script>
 
-                                   function getTasks() {
-                                       console.log("execue get tasks");
-                                       $.ajax({
-                                           url: "/api/v1/tasks",
-                                           type: "GET",
-                                           success: function (data) {
-                                               //data = eval(data);
-                                               alert(JSON.stringify(data));
-                                               $('#responseDiv').text(JSON.stringify(data));
-                                           },
-                                           error: function (xhr, status, errorThrown) {
-                                               console.log("Error: " + errorThrown);
-                                               $('#responseDiv').html(errorThrown);
-                                           }
-                                       });
-                                   }
-
-                                   function createTasks() {
-                                       console.log("execue create tasks");
-                                       var form = $('#taskForm');
-                                       //console.log($(form).serialize());
-                                       $.ajax({
-                                           url: "/api/v1/tasks",
-                                           type: "POST",
-                                           data: $(form).serialize(),
-                                           success: function (results) {
-                                               //data = eval(data);
-                                               alert(JSON.stringify(results));
-                                               $('#responseDiv').text(JSON.stringify(results));
-                                           },
-                                           error: function (xhr, status, errorThrown) {
-                                               console.log("Error: " + errorThrown);
-                                               $('#responseDiv').text(errorThrown);
-                                           }
-                                       });
-                                   }
-        </script>
+        <script src="/views/process.js"></script>
 
     </body>
 </html>
