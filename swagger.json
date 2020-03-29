@@ -27,6 +27,7 @@
                 "tags": [
                     "Tasks"
                 ],
+                "summary": "Create new task in system",
                 "description": "Create new task in system",
                 "parameters": [
                     {
