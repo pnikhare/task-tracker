@@ -4,7 +4,7 @@
         "version": "1.0.0",
         "title": "Node.js Application API to track tasks"
     },
-    "host": "localhost:8040",
+    "host": "localhost:3000",
     "basePath": "/api/v1",
     "tags": [
         {
