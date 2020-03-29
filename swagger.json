@@ -94,6 +94,7 @@
             },
             "put": {
                 "summary": "Update task with given ID",
+                "description":"Update task with given ID. If task with Id doesn't exist create new task.",
                 "tags": [
                     "Tasks"
                 ],
@@ -208,7 +209,7 @@
                         "name": "deadline",
                         "in": "path",
                         "required": true,
-                        "description": "Deadline of task to get list",
+                        "description": "Deadline of task to get list (format: YYYY-MM-DD)",
                         "type": "string",
                         "format":"date"
                     }
