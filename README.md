@@ -1,7 +1,6 @@
 # task-tracker
-
-### Task tracker rest application can be used to create, view, update, delete and search tasks created.
-### Mongo Db is used to store the tasks details in following model
+Task tracker rest application can be used to create, view, update, delete and search tasks created.
+Mongo Db is used to store the tasks details in following model
 ```
 {
 _id*	number
@@ -16,7 +15,7 @@ pattern: YYYY-MM-DD
 ```
 
 ## Deploy Server
-`node index.js`
+```node index.js```
 Rest Api starts listening at port 3000
 
 ### Link To use Api
