@@ -3,14 +3,14 @@ Task tracker rest application can be used to create, view, update, delete and se
 Mongo Db is used to store the tasks details in following model
 ```
 {
-_id*	: number
-        uniqueItems: true
-name*	: string
-        uniqueItems: true
-status*	: string
-project	: string
-deadline : string($date)
-           pattern: YYYY-MM-DD
+_id*	  : number
+            uniqueItems: true
+name*	  : string
+            uniqueItems: true
+status*	  : string
+project	  : string
+deadline  : string($date)
+            pattern: YYYY-MM-DD
 } 
 ```
 
