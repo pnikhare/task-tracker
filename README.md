@@ -11,7 +11,8 @@ status*	string
 project	string
 deadline	string($date)
 pattern: YYYY-MM-DD
-}```
+} 
+```
 
 ## Deploy Server
 `node index.js`
